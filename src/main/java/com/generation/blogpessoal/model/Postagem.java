@@ -22,23 +22,26 @@ public class Postagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
+
 	@NotBlank
 	@Size(min = 3, max = 100)
 	private String titulo;
-	
+
 	@NotBlank
 	@Size(min = 10, max = 1000)
 	private String texto;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime data;
-	
+
 	@ManyToOne
-	@JsonIgnoreProperties("postagem") /*Anotacao Json ignore o Lup */
-	private Tema tema;   /*chave estrangeira FK */
-	
+	@JsonIgnoreProperties("postagem") /* Anotacao Json ignore o Lup */
+	private Tema tema; /* chave estrangeira FK */
+
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+
 	public Tema getTema() {
 		return tema;
 	}
@@ -78,20 +81,13 @@ public class Postagem {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	
-	
-	
-	
-	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
